@@ -15,6 +15,7 @@ public class UserVO {
 	private int AGE;//年龄
 	private Date BIRTH;//出生日期
 	private String SEX;//性别
+	private String MAIL;
 	private String PASSWORD;//密码
 	private int SUPERUSER;//权限
 	/**
@@ -114,5 +115,19 @@ public class UserVO {
 	 */
 	public void setSUPERUSER(int superuser) {
 		SUPERUSER = superuser;
+	}
+	/**
+	 * 获取邮箱
+	 * @return
+	 */
+	public String getMAIL() {
+		return MAIL;
+	}
+	/**
+	 * 输入邮箱
+	 * @param mail
+	 */
+	public void setMAIL(String mail) {
+		MAIL = mail;
 	}
 }

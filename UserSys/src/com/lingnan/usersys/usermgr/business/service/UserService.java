@@ -6,5 +6,9 @@ import com.lingnan.usersys.usermgr.domain.UserVO;
 public interface UserService extends BaseDao{
 
 	public UserVO login(String name,String password) ;
+	
+	
+		
+	
 		
 }

@@ -1,9 +1,11 @@
 package com.lingnan.usersys.usermgr.business.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import com.lingnan.usersys.common.exception.DAOException;
 import com.lingnan.usersys.common.util.DBUtils;
@@ -54,7 +56,7 @@ public  class UserDaoImpl implements UserDao {
 				user.setSEX(rs.getString("sex"));
 				user.setPASSWORD(rs.getString("password"));
 				user.setSUPERUSER(rs.getInt("superuser"));
-			System.out.println(" "+user.getUSERID()+" "+user.getNAME()+" "+user.getPASSWORD());
+			System.out.println("编号： "+user.getUSERID()+" 姓名： "+user.getNAME()+" 年龄： "+user.getAGE()+" 出生日期： "+user.getBIRTH()+" "+user.getSEX()+" 密码： "+user.getPASSWORD()+" 权限： "+user.getSUPERUSER());
 			}
 			//如果出现异常，输出异常信息
 		} catch (SQLException e) {
@@ -65,9 +67,6 @@ public  class UserDaoImpl implements UserDao {
 			//调用数据库工具类，关闭结果集对象和声明对象
 			DBUtils.closeStatement(rs, prep);
 		}
-	/**
-	 * 
-	 */
 		return user;
 	}
 
@@ -78,16 +77,63 @@ public  class UserDaoImpl implements UserDao {
 	 */
 	public boolean addUser(UserVO user) {
 		
+		if(user!=null) {
+			boolean flag= false;
+			PreparedStatement prep = null;
+			int result = -1;
+		try {
+			prep=conn.prepareStatement("insert into z_user values(?,?,?,?,?,?,?");
+			prep.setInt(1, user.getUSERID());
+			prep.setString(2, user.getNAME());
+			prep.setInt(3, user.getAGE());
+			prep.setDate(4, (Date) user.getBIRTH());
+			prep.setString(5, user.getSEX());
+			prep.setString(6, user.getPASSWORD());
+			prep.setInt(7, user.getSUPERUSER());
+			
+			prep.executeUpdate();
+			System.out.println("编号： "+user.getUSERID()+" 姓名： "+user.getNAME()+" 年龄： "+user.getAGE()+" 出生日期： "+user.getBIRTH()+" "+user.getSEX()+" 密码： "+user.getPASSWORD()+" 权限： "+user.getSUPERUSER());
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println("在插入用户的时候出错了，错误信息是:"+e.getMessage());
+		}finally {
+			   try {
+				   if(prep!=null) {
+				prep.close();
+				prep=null;} 
+			   } catch (SQLException e) {
+				// 
+				System.out.println("关闭语句时出错！"+e.getMessage());
 				
-
+			       }
+			   
+			   }
+		}
 		
-		
-		
-		
-		
-		return false;
+		return true;
 	}
 
+//	public Vector<UserVO> findAllUser() {
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		return ;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 查找最大id值
@@ -96,6 +142,12 @@ public  class UserDaoImpl implements UserDao {
 	public int findMaxId() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Vector<UserVO> findAllUser() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

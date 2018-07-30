@@ -1,6 +1,7 @@
 package com.lingnan.usersys.usermgr.business.dao;
 
 import java.sql.Connection;
+import java.util.Vector;
 
 import com.lingnan.usersys.common.dao.BaseDao;
 import com.lingnan.usersys.usermgr.domain.UserVO;
@@ -29,7 +30,11 @@ public interface UserDao extends BaseDao {
 		 * @return 最大id值
 		 */
 	public int findMaxId();
-	
-	
+	/**
+	 * 查找所有用户信息
+	 * @return 用户信息
+	 */
+	public Vector<UserVO> findAllUser();
+		
 	
 }
