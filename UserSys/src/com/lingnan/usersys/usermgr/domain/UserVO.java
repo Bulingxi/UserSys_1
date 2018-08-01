@@ -104,7 +104,7 @@ public class UserVO {
 	}
 	/**
 	 * 获取权限
-	 * @return
+	 * @return 权限
 	 */
 	public int getSUPERUSER() {
 		return SUPERUSER;
@@ -118,7 +118,7 @@ public class UserVO {
 	}
 	/**
 	 * 获取邮箱
-	 * @return
+	 * @return 邮箱信息
 	 */
 	public String getMAIL() {
 		return MAIL;

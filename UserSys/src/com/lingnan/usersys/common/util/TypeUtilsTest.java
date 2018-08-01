@@ -32,7 +32,8 @@ public class TypeUtilsTest {
 
 	@Test
 	public void testIsMail() {
-		boolean f=TypeUtils.isMail("aa123@qq.com");
+		boolean f=false;
+		System.out.println( f=TypeUtils.isMail("wangxu198709@gmail.com"));
 		
 	}
 

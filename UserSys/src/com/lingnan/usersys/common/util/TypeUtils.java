@@ -7,7 +7,7 @@ import com.lingnan.usersys.common.exception.EmailException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
+
 
 
 /**
@@ -21,7 +21,7 @@ public class TypeUtils {
 	  /**
 	   * 判断是否为空
 	   * @param str 需要判断的字符串
-	   * @return
+	   * @return 判断结果
 	   */
 	public static boolean isEmpty(CharSequence str) {
 		if(str==null||str.length()==0) 
@@ -54,7 +54,7 @@ public class TypeUtils {
 
 	    /**
 	     * 作用：把一个字符串格式化成Date日期对象
-	     * @param s 输入的字符串
+	     * @param str 输入的字符串
 	     * @return 日期对象
 	     * @throws ParseException 
 	     */
@@ -78,12 +78,12 @@ public class TypeUtils {
 	     */
 	   public static boolean isMail(String str){
 	        try {
-				String   check   =  str.replaceAll("^\\\\w+((-\\\\w+)|(\\\\.\\\\w+))*\\\\@[A-Za-z0-9]+((\\\\.|-)[A-Za-z0-9]+)*\\\\.[A-Za-z0-9]+$", "") ;   
-				if(check.length()==0){   
-				    return true;  
+				String   check   =  str.replaceAll("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\\\\.([a-zA-Z0-9_-])+)+$", "") ;   
+				if(check.length()==0){  
+					System.out.println("邮箱格式错误---");
+				    return false;  
 				}else{  
-					System.out.println("邮箱格式错误");
-				    return false;
+				    return true;
 				}
 			} catch (Exception e) {
 				// 将异常封装成自定义异常
